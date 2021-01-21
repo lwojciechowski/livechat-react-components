@@ -1,5 +1,5 @@
 {
-  "name": "livechat-react-components",
+  "name": "@lwojciechowski/livechat-react-components",
   "version": "0.1.0",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
