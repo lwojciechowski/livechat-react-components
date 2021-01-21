@@ -21,7 +21,9 @@
     "build-watch": "rollup -c -w",
     "start-playground": "cd playground && npm run start",
     "i-all": "npm i && cd playground && npm i",
-    "dev": "npm-run-all --parallel build-watch start-playground"
+    "dev": "npm-run-all --parallel build-watch start-playground",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "peerDependencies": {
     "react": "^17.0.1",
