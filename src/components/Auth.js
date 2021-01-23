@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { accountsSdk } from "@livechat/accounts-sdk";
+import { accountsSDK } from "@livechat/accounts-sdk";
 
 import Loading from "./Loading";
 
@@ -9,13 +9,12 @@ const Auth = ({ children, signIn, clientId }) => {
     const authInstance = useRef(null);
 
     useEffect(() => {
-        authInstance.current = accountsSdk.init({
+        authInstance.current = accountsSDK.init({
             client_id: clientId,
             onIdentityFetched: (error, data) => {
                 setLoading(false);
                 if (data) {
                     setAuth(data);
-                    authRef.token = data.access_token;
                 }
                 if (error) {
                     console.error(error);
