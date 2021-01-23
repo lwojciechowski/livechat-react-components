@@ -1,7 +1,7 @@
 import { css, jsx } from '@emotion/core';
 import { Loader } from '@livechat/design-system';
 import React, { useState, useRef, useEffect } from 'react';
-import { accountsSdk } from '@livechat/accounts-sdk';
+import { accountsSDK } from '@livechat/accounts-sdk';
 
 function _extends() {
   _extends = Object.assign || function (target) {
@@ -142,14 +142,13 @@ var Auth = function Auth(_ref) {
 
   var authInstance = useRef(null);
   useEffect(function () {
-    authInstance.current = accountsSdk.init({
+    authInstance.current = accountsSDK.init({
       client_id: clientId,
       onIdentityFetched: function onIdentityFetched(error, data) {
         setLoading(false);
 
         if (data) {
           setAuth(data);
-          authRef.token = data.access_token;
         }
 
         if (error) {

@@ -150,14 +150,13 @@ var Auth = function Auth(_ref) {
 
   var authInstance = React.useRef(null);
   React.useEffect(function () {
-    authInstance.current = accountsSdk.accountsSdk.init({
+    authInstance.current = accountsSdk.accountsSDK.init({
       client_id: clientId,
       onIdentityFetched: function onIdentityFetched(error, data) {
         setLoading(false);
 
         if (data) {
           setAuth(data);
-          authRef.token = data.access_token;
         }
 
         if (error) {
