@@ -1,4 +1,4 @@
-#LiveChat React Components
+# LiveChat React Components
 
 Several utilities useful for writing LiveChat Apps for marketplace.
 
