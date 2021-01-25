@@ -1,5 +1,5 @@
 /**@jsx jsx */
-import { css, jsx } from "@emotion/core";
+import { css, jsx } from "@emotion/react";
 import { Loader } from "@livechat/design-system";
 
 const containerCss = css`

@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var core = require('@emotion/core');
+var react = require('@emotion/react');
 var designSystem = require('@livechat/design-system');
 var React = require('react');
 var accountsSdk = require('@livechat/accounts-sdk');
@@ -106,12 +106,12 @@ function _templateObject() {
 
   return data;
 }
-var containerCss = core.css(_templateObject());
+var containerCss = react.css(_templateObject());
 
 var Loading = function Loading() {
-  return core.jsx("div", {
+  return react.jsx("div", {
     css: containerCss
-  }, core.jsx(designSystem.Loader, {
+  }, react.jsx(designSystem.Loader, {
     size: "large"
   }));
 };
@@ -125,12 +125,12 @@ function _templateObject$1() {
 
   return data;
 }
-var linkCss = core.css(_templateObject$1());
+var linkCss = react.css(_templateObject$1());
 
 var LogInWithLiveChat = function LogInWithLiveChat(props) {
-  return core.jsx("a", _extends({
+  return react.jsx("a", _extends({
     css: linkCss
-  }, props), "Sign in with Live", core.jsx("span", null, "Chat"));
+  }, props), "Sign in with Live", react.jsx("span", null, "Chat"));
 };
 
 var Auth = function Auth(_ref) {
@@ -150,7 +150,7 @@ var Auth = function Auth(_ref) {
 
   var authInstance = React.useRef(null);
   React.useEffect(function () {
-    authInstance.current = accountsSdk.accountsSDK.init({
+    authInstance.current = accountsSdk.accountsSdk.init({
       client_id: clientId,
       onIdentityFetched: function onIdentityFetched(error, data) {
         setLoading(false);
