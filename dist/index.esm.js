@@ -1,6 +1,6 @@
-import { css, jsx } from '@emotion/react';
-import { Loader } from '@livechat/design-system';
 import React, { useState, useRef, useEffect } from 'react';
+import { Loader } from '@livechat/design-system';
+import { css, jsx } from '@emotion/react';
 import { accountsSdk } from '@livechat/accounts-sdk';
 
 function _extends() {
@@ -100,10 +100,15 @@ function _templateObject() {
 }
 var containerCss = css(_templateObject());
 
-var Loading = function Loading() {
+var Centered = function Centered(_ref) {
+  var children = _ref.children;
   return jsx("div", {
     css: containerCss
-  }, jsx(Loader, {
+  }, children);
+};
+
+var Loading = function Loading() {
+  return /*#__PURE__*/React.createElement(Centered, null, /*#__PURE__*/React.createElement(Loader, {
     size: "large"
   }));
 };
@@ -125,10 +130,19 @@ var LogInWithLiveChat = function LogInWithLiveChat(props) {
   }, props), "Sign in with Live", jsx("span", null, "Chat"));
 };
 
+var contains = function contains(arr, target) {
+  return target.every(function (v) {
+    return arr.includes(v);
+  });
+};
+
 var Auth = function Auth(_ref) {
   var children = _ref.children,
       signIn = _ref.signIn,
-      clientId = _ref.clientId;
+      clientId = _ref.clientId,
+      _ref$requiredScopes = _ref.requiredScopes,
+      requiredScopes = _ref$requiredScopes === void 0 ? [] : _ref$requiredScopes,
+      InsuficcientRight = _ref.insufficientRights;
 
   var _useState = useState(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -160,6 +174,12 @@ var Auth = function Auth(_ref) {
 
   if (loading) {
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(Loading, null));
+  }
+
+  console.log(auth);
+
+  if (auth !== null && !contains(auth.scopes, requiredScopes)) {
+    return InsuficcientRight && /*#__PURE__*/React.createElement(InsuficcientRight, null) || null;
   }
 
   return /*#__PURE__*/React.createElement(AuthContext.Provider, {

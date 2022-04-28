@@ -2,9 +2,9 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var react = require('@emotion/react');
-var designSystem = require('@livechat/design-system');
 var React = require('react');
+var designSystem = require('@livechat/design-system');
+var react = require('@emotion/react');
 var accountsSdk = require('@livechat/accounts-sdk');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -108,10 +108,15 @@ function _templateObject() {
 }
 var containerCss = react.css(_templateObject());
 
-var Loading = function Loading() {
+var Centered = function Centered(_ref) {
+  var children = _ref.children;
   return react.jsx("div", {
     css: containerCss
-  }, react.jsx(designSystem.Loader, {
+  }, children);
+};
+
+var Loading = function Loading() {
+  return /*#__PURE__*/React__default['default'].createElement(Centered, null, /*#__PURE__*/React__default['default'].createElement(designSystem.Loader, {
     size: "large"
   }));
 };
@@ -133,10 +138,19 @@ var LogInWithLiveChat = function LogInWithLiveChat(props) {
   }, props), "Sign in with Live", react.jsx("span", null, "Chat"));
 };
 
+var contains = function contains(arr, target) {
+  return target.every(function (v) {
+    return arr.includes(v);
+  });
+};
+
 var Auth = function Auth(_ref) {
   var children = _ref.children,
       signIn = _ref.signIn,
-      clientId = _ref.clientId;
+      clientId = _ref.clientId,
+      _ref$requiredScopes = _ref.requiredScopes,
+      requiredScopes = _ref$requiredScopes === void 0 ? [] : _ref$requiredScopes,
+      InsuficcientRight = _ref.insufficientRights;
 
   var _useState = React.useState(true),
       _useState2 = _slicedToArray(_useState, 2),
@@ -168,6 +182,12 @@ var Auth = function Auth(_ref) {
 
   if (loading) {
     return /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement(Loading, null));
+  }
+
+  console.log(auth);
+
+  if (auth !== null && !contains(auth.scopes, requiredScopes)) {
+    return InsuficcientRight && /*#__PURE__*/React__default['default'].createElement(InsuficcientRight, null) || null;
   }
 
   return /*#__PURE__*/React__default['default'].createElement(AuthContext.Provider, {
